@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>고래마루</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Pretendard',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#0a0a0a;
+color:white;
+overflow-x:hidden;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url("식당.png");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content{
+max-width:800px;
+}
+
+.badge{
+display:inline-block;
+padding:10px 18px;
+background:#c79f62;
+color:black;
+border-radius:999px;
+font-weight:bold;
+margin-bottom:25px;
+}
+
+.hero h1{
+font-size:5rem;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.4rem;
+color:#ddd;
+margin-bottom:40px;
+}
+
+.btn{
+padding:18px 40px;
+font-size:1.1rem;
+font-weight:bold;
+background:#c79f62;
+border:none;
+cursor:pointer;
+border-radius:10px;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
+}
+
+/* SHOP */
+
+.shop{
+padding:120px 8%;
+background:#111;
+}
+
+.shop-title{
+text-align:center;
+font-size:3rem;
+margin-bottom:15px;
+}
+
+.shop-sub{
+text-align:center;
+color:#aaa;
+margin-bottom:60px;
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:35px;
+}
+
+.product{
+background:#1b1b1b;
+border-radius:18px;
+overflow:hidden;
+transition:.3s;
+}
+
+.product:hover{
+transform:translateY(-8px);
+}
+
+.product img{
+width:100%;
+height:280px;
+object-fit:cover;
+}
+
+.product-info{
+padding:25px;
+}
+
+.tag{
+display:inline-block;
+padding:6px 12px;
+border-radius:999px;
+background:#c79f62;
+color:black;
+font-size:.85rem;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.product h3{
+margin-bottom:15px;
+font-size:1.4rem;
+}
+
+.product p{
+color:#bbb;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+.price{
+font-size:2rem;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.buy-btn{
+
+width:100%;
+padding:16px;
+
+border:none;
+background:#d7263d;
+
+color:white;
+font-size:1rem;
+font-weight:bold;
+
+cursor:pointer;
+
+border-radius:10px;
+transition:.3s;
+}
+
+.buy-btn:hover{
+background:#f83c56;
+}
+
+/* OVERLAY */
+
+.overlay{
+
+display:none;
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100vw;
+height:100vh;
+
+background:black;
+
+justify-content:center;
+align-items:center;
+
+z-index:99999;
+}
+
+.overlay-text{
+
+font-size:3rem;
+font-weight:bold;
+text-align:center;
+line-height:1.6;
+
+animation:shake .08s infinite;
+}
+
+@keyframes shake{
+
+0%{
+transform:translate(2px,2px);
+}
+
+50%{
+transform:translate(-2px,-2px);
+}
+
+100%{
+transform:translate(2px,2px);
+}
+
+}
+
+.glitch{
+animation:bodyShake .08s infinite;
+}
+
+@keyframes bodyShake{
+
+0%{
+transform:translate(1px);
+}
+
+50%{
+transform:translate(-1px);
+}
+
+100%{
+transform:translate(1px);
+}
+
+}
+
+/* TRUTH */
+
+.truth{
+
+display:none;
+
+background:black;
+
+padding:120px 10%;
+text-align:center;
+}
+
+.truth h2{
+font-size:4rem;
+margin-bottom:40px;
+}
+
+.truth img{
+
+width:500px;
+max-width:90%;
+
+margin-bottom:40px;
+}
+
+.truth p{
+
+max-width:900px;
+
+margin:auto;
+
+font-size:1.4rem;
+line-height:2;
+color:#ddd;
+}
+
+/* FOOTER */
+
+.footer{
+padding:120px 20px;
+text-align:center;
+background:#050505;
+}
+
+.footer h2{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.footer p{
+color:#aaa;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:3rem;
+}
+
+.overlay-text{
+font-size:2rem;
+}
+
+.truth h2{
+font-size:2.5rem;
+}
+
+.truth p{
+font-size:1.1rem;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+국가 인증 판매처
+</div>
+
+<h1>
+고래마루
+</h1>
+
+<p>
+고래를 가장 맛있게.
+</p>
+
+<button class="btn" onclick="scrollToMenu()">
+오늘의 특선 보기
+</button>
+
+</div>
+
+</section>
+
+<!-- SHOP -->
+
+<section class="shop" id="menuSection">
+
+<h2 class="shop-title">
+오늘의 특선
+</h2>
+
+<p class="shop-sub">
+이번 주 가장 높은 평가를 받은 고래 부위
+</p>
+
+<div class="product-grid">
+
+<div class="product">
+
+<img src="후회가 풍부한 26세 여성.png">
+
+<div class="product-info">
+
+<div class="tag">
+BEST
+</div>
+
+<h3>
+후회가 풍부한 26세 여성 등살
+</h3>
+
+<p>
+첫사랑과 걷던 비 오는 거리의 향.
+은은한 미련의 여운이 특징.
+</p>
+
+<div class="price">
+₩19,900
+</div>
+
+<button class="buy-btn" onclick="revealTruth()">
+구매하기
+</button>
+
+</div>
+
+</div>
+
+<div class="product">
+
+<img src="외로움이 짙은 29세 남성.png">
+
+<div class="product-info">
+
+<div class="tag">
+PREMIUM
+</div>
+
+<h3>
+외로움이 짙은 29세 남성 목살
+</h3>
+
+<p>
+혼자 마시던 편의점 캔맥주와 겨울 밤공기.
+담담한 고독의 끝맛이 특징.
+</p>
+
+<div class="price">
+₩22,900
+</div>
+
+<button class="buy-btn" onclick="revealTruth()">
+구매하기
+</button>
+
+</div>
+
+</div>
+
+<div class="product">
+
+<img src="미련이 은은한 27세 여성.png">
+
+<div class="product-info">
+
+<div class="tag">
+품절 임박
+</div>
+
+<h3>
+미련이 은은한 27세 여성 갈빗살
+</h3>
+
+<p>
+벚꽃 흩날리던 등굣길과 첫 손잡음의 기억.
+풋풋한 아쉬움의 향이 특징.
+</p>
+
+<div class="price">
+₩26,900
+</div>
+
+<button class="buy-btn" onclick="revealTruth()">
+구매하기
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- OVERLAY -->
+
+<div class="overlay" id="overlay">
+
+<div class="overlay-text" id="overlayText">
+
+구매가 완료되었습니다.
+
+</div>
+
+</div>
+
+<!-- TRUTH -->
+
+<section class="truth" id="truth">
+
+<h2>
+근심고래
+</h2>
+
+<img src="근심고래(5).png">
+
+<p>
+
+사람들은 근심을 판매한다고 믿었다.
+
+<br><br>
+
+하지만 그들이 버린 것은
+감정이었다.
+
+<br><br>
+
+상실의 아픔을 떼어낸 사람은
+사랑했던 기억도 함께 잃었다.
+
+<br><br>
+
+죄책감을 떼어낸 사람은
+잘못을 반복했다.
+
+<br><br>
+
+후회를 떼어낸 사람은
+성장하지 못했다.
+
+<br><br>
+
+세상은 점점 더 무감각해지고 있었다.
+
+</p>
+
+<div id="videoSection" style="margin-top:80px; display:none;">
+
+<h2>
+소설 '근심고래' 소개 영상
+</h2>
+
+<!-- 나중에 영상 추가 -->
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<script>
+
+function scrollToMenu(){
+
+document
+.getElementById("menuSection")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+function revealTruth(){
+
+window.scrollTo({
+top:0,
+behavior:"instant"
+});
+
+const overlay =
+document.getElementById("overlay");
+
+const text =
+document.getElementById("overlayText");
+
+overlay.style.display="flex";
+
+text.innerHTML=
+"구매가 완료되었습니다.";
+
+setTimeout(()=>{
+
+text.innerHTML=
+"당신은 지금<br><br>누군가의 감정을 먹었습니다.";
+
+},1500);
+
+setTimeout(()=>{
+
+document.body.classList.add("glitch");
+
+},3000);
+
+setTimeout(()=>{
+
+overlay.style.display="none";
+
+document.body.classList.remove("glitch");
+
+const truth =
+document.getElementById("truth");
+
+truth.style.display="block";
+
+truth.scrollIntoView({
+behavior:"smooth"
+});
+
+},5000);
+
+}
+
+</script>
+
+</body>
+</html>
