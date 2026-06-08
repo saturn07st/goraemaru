@@ -515,11 +515,28 @@ PREMIUM
 
 <div id="videoSection" style="margin-top:80px; display:none;">
 
-<h2>
-소설 '근심고래' 소개 영상
-</h2>
+    <h2 style="margin-bottom:30px;">
+        소설 「근심고래」 소개 영상
+    </h2>
 
-<!-- 나중에 영상 추가 -->
+    <a
+        href="https://www.youtube.com/shorts/6gEkbXEJPps"
+        target="_blank"
+        style="
+        display:inline-block;
+        padding:18px 35px;
+        background:#d7263d;
+        color:white;
+        text-decoration:none;
+        border-radius:12px;
+        font-size:1.2rem;
+        font-weight:bold;
+        margin-top:20px;
+        ">
+        🎬 영상 보러 가기
+    </a>
+
+</div>
 
 </div>
 
@@ -572,18 +589,20 @@ document.body.classList.add("glitch");
 
 setTimeout(()=>{
 
-overlay.style.display="none";
+    overlay.style.display="none";
 
-document.body.classList.remove("glitch");
+    document.body.classList.remove("glitch");
 
-const truth =
-document.getElementById("truth");
+    const truth =
+    document.getElementById("truth");
 
-truth.style.display="block";
+    truth.style.display="block";
 
-truth.scrollIntoView({
-behavior:"smooth"
-});
+    document.getElementById("videoSection").style.display="block";
+
+    truth.scrollIntoView({
+        behavior:"smooth"
+    });
 
 },5000);
 
